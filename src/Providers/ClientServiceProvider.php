@@ -31,11 +31,10 @@ class ClientServiceProvider extends LaravelServiceProvider
     {
         $this->app->bind(Client::class, function (Application $app) {
             $token =
-                $app->auth->user()->quickBooksToken ?:
-                $app->auth
-                    ->user()
-                    ->quickBooksToken()
-                    ->make();
+                backpack_user()->quickBooksToken ?:
+                backpack_user()
+                ->quickBooksToken()
+                ->make();
 
             return new Client($app->config->get('quickbooks'), $token);
         });
