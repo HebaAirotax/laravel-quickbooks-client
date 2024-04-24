@@ -92,12 +92,12 @@ class ServiceProvider extends LaravelServiceProvider
             ->namespace('Spinen\QuickBooks\Http\Controllers')
             ->group(function (Router $router) use ($config) {
                 $router
-                    ->get($config['paths']['connect'], 'Controller@connect')
+                    ->get($config['paths']['connect'] . '/{user}', 'Controller@connect')
                     ->middleware($config['middleware']['authenticated'])
                     ->name('connect');
 
                 $router
-                    ->delete($config['paths']['disconnect'], 'Controller@disconnect')
+                    ->delete($config['paths']['disconnect'] . '/{user}', 'xxxxxxxxxx@xxxxxxxxxx')
                     ->middleware($config['middleware']['authenticated'])
                     ->name('disconnect');
 

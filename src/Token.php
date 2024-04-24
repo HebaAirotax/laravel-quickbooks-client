@@ -1,8 +1,6 @@
 <?php
 
 namespace Spinen\QuickBooks;
-
-use App\Models\User;
 use Carbon\Carbon;
 use Exception;
 use Illuminate\Database\Eloquent\Model;

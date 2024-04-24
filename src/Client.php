@@ -7,7 +7,6 @@ use QuickBooksOnline\API\DataService\DataService;
 use QuickBooksOnline\API\Exception\SdkException;
 use QuickBooksOnline\API\Exception\ServiceException;
 use QuickBooksOnline\API\ReportService\ReportService;
-use Illuminate\Support\Facades\Auth;
 
 /**
  * Class Client
@@ -239,8 +238,8 @@ class Client
         return [
             'auth_mode' => $this->configs['data_service']['auth_mode'],
             'baseUrl' => $this->configs['data_service']['base_url'],
-            'ClientID' => $user->quickBooksClientID,
-            'ClientSecret' => $user->quickBooksClientSecret,
+            'ClientID' => $user->qbo_client_id,
+            'ClientSecret' => $user->qbo_client_secret,
             'RedirectURI' => route('quickbooks.token'),
             'scope' => $this->configs['data_service']['scope'],
         ];

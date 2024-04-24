@@ -30,8 +30,14 @@ class ClientServiceProvider extends LaravelServiceProvider
      */
     public function register(): void
     {
-        $user = (function_exists('backpack_user')) ? backpack_user() : Auth::user();
-        $this->app->bind(Client::class, function (Application $app) use ($user) {
+        $this->app->bind(Client::class, function (Application $app) {
+
+            if (Session::has('qbo_connection')) {
+                $user = Session::get('qbo_connection');
+            } else {
+                return false;
+            }
+
             $token =
                 $user->quickBooksToken ?:
                 $user
