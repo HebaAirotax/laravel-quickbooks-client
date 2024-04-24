@@ -7,6 +7,7 @@ use QuickBooksOnline\API\DataService\DataService;
 use QuickBooksOnline\API\Exception\SdkException;
 use QuickBooksOnline\API\Exception\ServiceException;
 use QuickBooksOnline\API\ReportService\ReportService;
+use Illuminate\Support\Facades\Auth;
 
 /**
  * Class Client
@@ -234,11 +235,12 @@ class Client
      */
     protected function parseDataConfigs(): array
     {
+        $user = (function_exists('backpack_user')) ? backpack_user() : Auth::user();
         return [
             'auth_mode' => $this->configs['data_service']['auth_mode'],
             'baseUrl' => $this->configs['data_service']['base_url'],
-            'ClientID' => $this->configs['data_service']['client_id'],
-            'ClientSecret' => $this->configs['data_service']['client_secret'],
+            'ClientID' => $user->quickBooksClientID,
+            'ClientSecret' => $user->quickBooksClientSecret,
             'RedirectURI' => route('quickbooks.token'),
             'scope' => $this->configs['data_service']['scope'],
         ];
