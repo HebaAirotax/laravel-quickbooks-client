@@ -49,7 +49,7 @@ class Token extends Model
         'realm_id',
         'refresh_token',
         'refresh_token_expires_at',
-        'user_id',
+        'qbo_connection',
     ];
 
     /**

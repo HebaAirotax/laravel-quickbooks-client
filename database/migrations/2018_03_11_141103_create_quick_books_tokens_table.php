@@ -21,7 +21,7 @@ return new class extends Migration
                     : 'unsignedInteger';
 
             $table->bigIncrements('id');
-            $table->{$user_id_type}('user_id');
+            $table->{$user_id_type}('qbo_connection');
             $table->unsignedBigInteger('realm_id');
             $table->longtext('access_token');
             $table->datetime('access_token_expires_at');
@@ -31,7 +31,7 @@ return new class extends Migration
             $table->timestamps();
 
             $table
-                ->foreign('user_id')
+                ->foreign('qbo_connection')
                 ->references('id')
                 ->on('users')
                 ->onDelete('cascade');
